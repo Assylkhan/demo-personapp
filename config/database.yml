@@ -31,8 +31,8 @@ development:
   database: personapp_test
   username: personapp
   password: <%= ENV["pg_test_password"] %>
-# production:
-#   <<: *default
-#   database: personapp_production
-#   username: personapp
-#   password: <%= ENV['PERSONAPP_DATABASE_PASSWORD'] %>
+production:
+  <<: *default
+  database: personapp_production
+  username: personapp
+  password: <%= ENV['PERSONAPP_DATABASE_PASSWORD'] %>
