@@ -1,0 +1,20 @@
+<div class="row well">
+  <div class="clearfix inline" style="margin-bottom: 20px;">
+    <strong>Projects</strong>
+    <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#myModal">
+      Create a new project
+    </button>
+
+    <!-- Modals -->
+    <%= render 'projectModal' %>
+    <%= render 'personaModal' %>
+    
+  </div>
+  <ul class="list-unstyled projects">
+  <% if (current_user.projects.exists?) %>
+    <% current_user.projects.each do |project| %>
+      <%= render project %>
+    <% end %>
+  <% end %>
+  </ul>
+</div>

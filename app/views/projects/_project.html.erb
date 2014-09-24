@@ -1,0 +1,29 @@
+<li class="panel" id="project-<%= project.id %>">
+  <div class="panel-heading"><strong><%= project.name %></strong></div>
+  <div class="panel-body bg-grayLight hide">
+    <ul class="personasList list-unstyled row">
+      <% project.personas.each do |persona| %>
+        
+        <div class="col-md-3">
+          <li class="col-md-10">
+            <%= link_to persona, class: "thumbnail" do %>
+              <img src="<%= image_url(persona.image) %>" alt="persona">
+              <p class="clearfix text-center"><%= persona.name %></p>
+              <p class="clearfix text-center"><%= persona.post %></p>
+              <a href="javascript:void(0)" class="delete_persona" id="<%= persona.id %>">
+                </a>
+            <% end %>
+          </li>
+        </div>
+
+      <% end %>
+    </ul>
+    <div class="clearfix inline" >
+      <button class="btn btn-danger pull-right addPersona" data-id="project_<%= project.id %>" data-toggle="modal" data-target="#myModal2">
+        Add persona
+      </button>
+      <%= button_to project, method: :delete, remote: true, class: "delete pull-right", data: { confirm: 'Are you sure you want to delete this project?' } do %>
+      <% end %>
+    </div>
+  </div>
+</li>

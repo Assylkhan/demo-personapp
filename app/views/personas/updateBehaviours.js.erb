@@ -1,0 +1,9 @@
+var behaviours_div = $(".behForm").closest(".dashboard-panel-6");
+if (<%= @update %> == true) {
+  $(".behForm").replaceWith('<li class="behAttr" id="<%=@index %>"><%= @persona[@div_id][@index.to_i] %><a href="javascript:void(0)" class="hidden deleteAttr pull-right"></a></li>');
+} else {
+  $(".behForm").replaceWith('<li class="behAttr" id="<%=@index %>"><%= @persona[@div_id].last %><a href="javascript:void(0)" class="hidden deleteAttr pull-right"></a></li>');
+  behaviours_div.find("ul").append("<%= escape_javascript(render partial: 'inputBehaviour', locals: {persona: @persona, index: @index.to_i+1, update: @update, div_id: @div_id } ) %>");
+  var behAttrContent = "";
+}
+checkIfAnyBeh(behaviours_div);

@@ -1,0 +1,82 @@
+<div class="row well">
+  <div class="clearfix inline">
+    <strong>Projects >> <%= @persona.project.name if @persona.project.name %> >> <%= @persona.name %></strong>
+    <ul class="pull-right list-unstyled icons">
+      <li><%= link_to persona_path(@persona, format: "pdf"), title: "Export to PDF" do %><span class="icon export_pdf"></span><% end %> </li>
+      <li><a title="Share" href="#"><span class="icon share"></span></a></li>
+      <li><a title="Print" onclick="window.print()" href="javascript:void(0);"><span class="icon print"></span></a></li>
+      <li><a data-id="project_<%= @persona.project.id %>" class="addPersona" data-toggle="modal" data-target="#myModal2" title="Create another persona" href="#"><span class="icon create_persona"></span></a></li>
+    </ul>
+  </div>
+  <%= render 'projects/personaModal' %>
+  <p>All changes saved automatically</p>
+  <div class="row personaContainers">
+    
+    <!-- images -->
+    <div class="col-md-6 well dashboard-panel-6">
+      <%= render partial: "images", locals: {persona: @persona} %>
+    </div>
+
+    <!-- behaviours -->
+    <div id="behaviours" class="col-md-6 well dashboard-panel-6 inform pull-right">
+      <h3>Behaviours</h3>
+      <ul class="lead">
+        <% unless @persona.behaviours == [] or @persona.behaviours == nil %>
+          <% @persona.behaviours.each_with_index do |item, index| %>
+            <li id="<%= index %>" class="behAttr"><%= item %>
+              <a href="javascript:void(0)" class="hidden deleteAttr pull-right">
+              </a>
+            </li>
+          <% end %>
+        <% else %>
+          <li class="placeholderText">Has a housecleaner</li>
+          <li class="placeholderText">Buys take-away 3 times a week</li>
+          <li class="placeholderText">Frequently feels overhelmed when she forgets something</li>
+        <% end %>
+        <!-- <li>Add a new item...</li> -->
+      </ul>
+    </div>
+  </div>
+  <div class="row personaContainers">
+    <div id="facts_demographics" class="col-md-6 well dashboard-panel-6 inform">
+      <h3>Facts & Demographics</h3>
+      <ul class="lead">
+        <% unless @persona.facts_demographics == [] or @persona.facts_demographics == nil %>
+          <% @persona.facts_demographics.each_with_index do |item, index| %>
+            <li id="<%= index %>" class="behAttr"><%= item %>
+              <a href="javascript:void(0)" class="hidden deleteAttr pull-right">
+              </a>
+            </li>
+          <% end %>
+        <% else %>
+          <li class="placeholderText">Working mum</li>
+          <li class="placeholderText">34 years old</li>
+          <li class="placeholderText">Lives in Reading, works in London</li>
+          <li class="placeholderText">Married, 2 kids</li>
+          <li class="placeholderText">Household 125k a year</li>
+        <% end %>
+        <!-- <li>Add a new item...</li> -->
+      </ul>
+    </div>
+    <div id="needs_goals" class="col-md-6 well dashboard-panel-6 inform pull-right">
+      <h3>Needs & Goals</h3>
+      <ul class="lead">
+        <% unless @persona.needs_goals == [] or @persona.needs_goals == nil %>
+          <% @persona.needs_goals.each_with_index do |item, index| %>
+            <li id="<%= index %>" class="behAttr"><%= item %>
+              <a href="javascript:void(0)" class="hidden deleteAttr pull-right">
+              </a>
+            </li>
+          <% end %>
+        <% else %>
+          <li class="placeholderText">Spend more time with her friends</li>
+          <li class="placeholderText">Feel like she “has it sorted”</li>
+          <li class="placeholderText">Live a healthier lifestyle</li>
+          <li class="placeholderText">“Clone herself”</li>
+        <% end %>
+        <!-- <li>Add a new item...</li> -->
+      </ul>
+    </div>
+  </div>
+  <h6> <%= link_to ">> back to projects", projects_path %></h6>
+</div>

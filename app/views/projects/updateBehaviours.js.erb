@@ -1,0 +1,3 @@
+$(".behaviours>ul").append('<li class="behAttr"><%= @persona.behaviours.last %></li>');
+$(".behaviours>ul").append("<%= escape_javascript(render partial: 'inputBehaviour', locals: {persona: @persona}, layout: false ) %>");
+$(".form-control").val('');

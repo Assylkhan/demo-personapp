@@ -1,0 +1,11 @@
+var box = $("#<%= @div_id %>");
+// if (box[0].id == "facts_demographics")
+
+box.find("ul>li.placeholderText").hide();
+if ( <%= @update %> == true ){
+  var behAttrContent = box.find("ul>li#<%= @index %>").html();
+  box.find("ul>li#<%= @index %>").replaceWith("<%= escape_javascript(render partial: 'inputBehaviour', locals: {persona: @persona, index: @index, div_id: @div_id, update: @update} ) %>");
+} else {
+  var behAttrContent = ""
+  box.find("ul").append("<%= escape_javascript(render partial: 'inputBehaviour', locals: {persona: @persona, index: @lastIndex, div_id: @div_id, update: @update}) %>");
+}

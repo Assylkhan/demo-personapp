@@ -1,0 +1,17 @@
+$("#modal-window2").html("<%= escape_javascript(render 'personas/new') %>");
+$("#modal-window2").modal('show');
+$(document).on("click", ".save", function(e){
+  if ($("#project_name").val() == "")
+    alert('please provide a persona name');
+  else
+    $("#new_persona").submit(function(){
+      var valueToSubmit = $(this).serialize();
+      $.ajax({
+        url: $(this).attr('action'),
+        data: valueToSubmit,
+        dataType: "script"
+      })
+    return false;
+    });
+
+});

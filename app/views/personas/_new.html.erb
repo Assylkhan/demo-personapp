@@ -1,0 +1,15 @@
+<div id="modal-window2" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" style="top: 25%;" >
+  <div class="modal-content">
+    <div class="modal-body">
+      <div style="margin: 0 5px;">
+        <%= simple_form_for @persona, remote: true, defaults: { input_html: { class: 'form-control' } } do |f| %>
+          <%= f.input :name %>
+          <%= f.input :post %>
+          <button type="button" class="btn btn-danger save">Save</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

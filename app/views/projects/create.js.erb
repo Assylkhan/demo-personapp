@@ -1,0 +1,5 @@
+$("ul.projects").append("<%= escape_javascript( render :partial => 'project', locals: {project: @project}, :layout => false ) %>");
+$("#myModal").modal('hide');
+$("#project_name").val('');
+$("#myModal2").modal('show');
+$(".btn-danger.save").attr("id", <%= @project.id %>);

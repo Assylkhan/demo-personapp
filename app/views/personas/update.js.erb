@@ -1,0 +1,6 @@
+if ("<%= @persona.image %>" != "") {
+  $(".pImages>li, .chooseImage").hide();
+  var id = "<%= @persona.image %>".replace(".png", "");
+  $(".pImages>li#"+id).show(); }
+else
+  $(".pImages>li, .chooseImage").show();
