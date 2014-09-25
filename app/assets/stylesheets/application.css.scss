@@ -215,7 +215,7 @@ li.behAttr:hover {
 }
 .deleteAttr, .delete_persona {
   content: ".";
-  background: url(asset_path('delete.png')) no-repeat scroll 0px 0px transparent;
+  background: url(asset_url('delete.png')) no-repeat scroll 0px 0px transparent;
   height: 17px;
   width: 15px;
   border: medium none;
