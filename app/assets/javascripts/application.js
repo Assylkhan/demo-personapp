@@ -157,7 +157,9 @@ $(document).on("click", ".deleteAttr", function(e){
     });
   };
 });
-$(document).on("click", ".delete_persona", function(e){
+$(document).on("mouseenter", ".delete_persona", function(e){
+  // e.stopPropagation();
+}).on("click", ".delete_persona", function(e){
   e.stopPropagation();
   if (confirm("Are you sure you want to delete this persona")) {
     var hash = {};
@@ -206,3 +208,11 @@ $(".persona_post>form>#persona_post").keypress(function(e) {
     $(".persona_post>form").submit();
   };
 });
+$(document).on("mouseenter", ".persona_image", function(e){
+  $(this).find(".delete_persona").removeClass("hidden");
+}).on("mouseleave", ".persona_image", function(e){
+  $(this).find(".delete_persona").addClass("hidden");
+});
+// function link_to(persona_id){
+//   window.location.href = "/personas/"+persona_id
+// };

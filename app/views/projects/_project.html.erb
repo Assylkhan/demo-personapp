@@ -4,16 +4,13 @@
     <ul class="personasList list-unstyled row">
       <% project.personas.each do |persona| %>
         
-        <div class="col-md-3">
-          <li class="col-md-10">
-            <%= link_to persona, class: "thumbnail" do %>
-              <img src="<%= image_url(persona.image) %>" alt="persona">
-              <p class="clearfix text-center"><%= persona.name %></p>
-              <p class="clearfix text-center"><%= persona.post %></p>
-              <a href="javascript:void(0)" class="delete_persona" id="<%= persona.id %>">
-                </a>
-            <% end %>
-          </li>
+        <div class="col-md-2 persona_image">
+          <a href="/personas/<%= persona.id %>" class="thumbnail">
+            <img src="<%= image_url(persona.image) %>" alt="persona">
+            <p class="clearfix text-center"><%= persona.name %></p>
+            <p class="clearfix text-center"><%= persona.post %></p>
+            <a href="javascript:void(0)" style="position: absolute; top: 10px; left: 150px;" class="hidden delete_persona" id="<%= persona.id %>"></a>
+          </a>
         </div>
 
       <% end %>

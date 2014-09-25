@@ -75,6 +75,9 @@ h2, h4 {
 .navbar, .nav>li>a:hover {
   background: black;
 }
+.footer>div>ul.nav>li>a:hover {
+  background: #FFF;
+}
 .nav>li {
   float: left;
   a {
