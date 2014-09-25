@@ -6,7 +6,7 @@
         
         <div class="col-md-2 persona_image">
           <a href="/personas/<%= persona.id %>" class="thumbnail">
-            <img src="<%= image_url(persona.image) %>" alt="persona">
+            <img src="<%= image_url(persona.image) %>" style="margin-top: 25px; " alt="persona">
             <p class="clearfix text-center"><%= persona.name %></p>
             <p class="clearfix text-center"><%= persona.post %></p>
             <a href="javascript:void(0)" style="position: absolute; top: 10px; left: 150px;" class="hidden delete_persona" id="<%= persona.id %>"></a>
