@@ -116,19 +116,22 @@ $(document).on("click", ".cancel", function(e) {
 $(document).on("click", ".behForm", function(e) { 
   e.stopPropagation();
 });
-$(document).on("click", ".behAttr", function(e) {
-  e.stopPropagation();
-  $(this).find(".deleteAttr").addClass("hidden");
-  var hash = {};
-  var box = $(this).closest(".dashboard-panel-6");
+function behFormOpened(){
   if ($(".behForm").length > 0){
     if (behAttrContent != "")
       $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
     else
       $(".behForm").remove();
-  }
+  };
+};
+$(document).on("click", ".behAttr", function(e) {
+  e.stopPropagation();
+  // $(this).find(".deleteAttr").addClass("hidden");
+  var hash = {};
+  var box = $(this).closest(".dashboard-panel-6");
+  behFormOpened();
   hash["id"] = $(".pImages").attr("id").replace("persona_", "");
-  hash["index"] = $(this).index();
+  hash["index"] = $(this).attr("id");
   hash["div_id"] = box.attr("id");
   $.ajax({
     type: 'POST',
@@ -144,10 +147,11 @@ $(document).on("mouseenter", "li.behAttr", function(e) {
 });
 $(document).on("click", ".deleteAttr", function(e){
   e.stopPropagation();
+  behFormOpened();
   if (confirm("Are you sure you want to delete this item")) {
     var hash = {};
     hash["id"] = $(".pImages").attr("id").replace("persona_", "");
-    hash["attrib_index"] = $(this).parent().index();
+    hash["attrib_index"] = $(this).parent().attr("id");
     hash["div_id"] = $(this).closest(".dashboard-panel-6").attr("id");
     $.ajax({
       type: 'DELETE',
@@ -155,11 +159,9 @@ $(document).on("click", ".deleteAttr", function(e){
       data: hash,
       dataType: "script"
     });
-  };
+  }
 });
-$(document).on("mouseenter", ".delete_persona", function(e){
-  // e.stopPropagation();
-}).on("click", ".delete_persona", function(e){
+$(document).on("click", ".delete_persona", function(e){
   e.stopPropagation();
   if (confirm("Are you sure you want to delete this persona")) {
     var hash = {};

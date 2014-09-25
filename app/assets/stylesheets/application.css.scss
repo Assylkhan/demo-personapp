@@ -213,6 +213,9 @@ li.behAttr:hover {
   display:block;
   height:0;
 }
+.placeholderText {
+  color: gray;
+}
 .deleteAttr, .delete_persona {
   content: ".";
   background: image-url('delete.png') no-repeat scroll 0px 0px transparent;
@@ -221,4 +224,7 @@ li.behAttr:hover {
   border: medium none;
   float: right;
   margin: 5px 7px 0 0; 
+}
+.persona_image>a:focus {
+  outline: 0;
 }
