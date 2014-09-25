@@ -9,16 +9,8 @@
 <ul class="list-unstyled pImages" id="persona_<%= persona.id %>">
   <% if persona.image == nil or persona.image.blank? %>
     <h4 class="chooseImage">Please choose an image</h4>
-    <li id="face_1"><%= link_to image_tag(asset_path("face_1.png")), "javascript:void(0)" %></li>
-    <li id="face_2"><%= link_to image_tag(asset_path("face_2.png")), "javascript:void(0)" %></li>
-    <li id="face_3"><%= link_to image_tag(asset_path("face_3.png")), "javascript:void(0)" %></li>
-    <li id="face_4"><%= link_to image_tag(asset_path("face_4.png")), "javascript:void(0)" %></li>
-    <li id="face_5"><%= link_to image_tag(asset_path("face_5.png")), "javascript:void(0)" %></li>
-    <li id="face_6"><%= link_to image_tag(asset_path("face_6.png")), "javascript:void(0)" %></li>
-    <li id="face_7"><%= link_to image_tag(asset_path("face_7.png")), "javascript:void(0)" %></li>
-    <li id="face_8"><%= link_to image_tag(asset_path("face_8.png")), "javascript:void(0)" %></li>
-    <li id="face_9"><%= link_to image_tag(asset_path("face_9.png")), "javascript:void(0)" %></li>
-    <li id="face_10"><%= link_to image_tag(asset_path("face_10.png")), "javascript:void(0)" %></li>
+    <li id="face_1"><%= link_to image_tag("face_1.png"), "javascript:void(0)" %></li>
+    
   <% else %>
     <li><%= link_to image_tag image_url(persona.image) %></li>
   <% end %>
