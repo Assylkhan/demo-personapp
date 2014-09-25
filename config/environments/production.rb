@@ -81,6 +81,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # config.assets.precompile += %w( application.css.scss application.js )
-  config.assets.precompile << 'application.js'
-  config.assets.precompile << 'application.css.scss'
+  # config.assets.precompile << 'application.js'
+  # config.assets.precompile << 'application.css.scss'
 end

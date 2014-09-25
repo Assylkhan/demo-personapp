@@ -118,13 +118,14 @@ $(document).on("click", ".behForm", function(e) {
 });
 $(document).on("click", ".behAttr", function(e) {
   e.stopPropagation();
+  $(this).find(".deleteAttr").addClass("hidden");
   var hash = {};
   var box = $(this).closest(".dashboard-panel-6");
-  if (box.find(".behForm").length > 0){
+  if ($(".behForm").length > 0){
     if (behAttrContent != "")
-      box.find(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
+      $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
     else
-      box.find(".behForm").remove();
+      $(".behForm").remove();
   }
   hash["id"] = $(".pImages").attr("id").replace("persona_", "");
   hash["index"] = $(this).index();
