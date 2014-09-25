@@ -2,9 +2,9 @@ module ApplicationHelper
   include TweetButton
   def image_url(image)
     if image.nil? || image.blank?
-      "../assets/blank.png"
+      asset_url('blank.png')
     else
-      "../assets/"+image
+      asset_url(image)
     end
   end
 
