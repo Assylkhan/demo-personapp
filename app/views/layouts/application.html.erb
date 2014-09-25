@@ -14,7 +14,7 @@
 <body class="bg-grayLight">
 
 <header class="header angleBorders navbar">
-  <a href="<%= root_path %>"><img src="../assets/logo.png" alt="Personapp logo"></a>
+  <a href="<%= root_path %>"><img src="<%=asset_url('logo.png') %>" alt="Personapp logo"></a>
   <% if signed_in? %>
     <ul class="nav navbar-nav pull-right">
       <li><%= link_to "home", root_path %></li>
