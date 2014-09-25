@@ -46,7 +46,7 @@ $brp-primary: #428bca;
 }
 
 .delete {
-  background: url(asset_path('delete.png')) no-repeat scroll 0px 0px transparent;
+  background: image-url('delete.png') no-repeat scroll 0px 0px transparent;
   height: 17px;
   width: 15px;
   border: medium none;
@@ -104,7 +104,7 @@ h2, h4 {
     left: -60px;
     bottom: 0;
     z-index: -1;
-    background: url(asset-path("mockup.png")) no-repeat;
+    background: image-url("mockup.png") no-repeat;
   }
 }
 .col-centered{
@@ -175,19 +175,19 @@ li.panel {
   cursor: pointer;
 }
 .icon.export_pdf {
-  background: url(asset_path("toolbar_export_pdf.png")) no-repeat scroll 0px 0px;
+  background: image-url("toolbar_export_pdf.png") no-repeat scroll 0px 0px;
   position: absolute;
 }
 .icon.share {
-  background: url(asset_path("toolbar_share.png"));
+  background: image-url("toolbar_share.png");
   position: absolute;
 }
 .icon.print {
-  background: url(asset_path("toolbar_print.png"));
+  background: image-url("toolbar_print.png");
   position: absolute;
 }
 .icon.create_persona {
-  background: url(asset_path("toolbar_create_persona.png"));
+  background: image-url("toolbar_create_persona.png");
   position: absolute;
 }
 li.behForm {
@@ -215,7 +215,7 @@ li.behAttr:hover {
 }
 .deleteAttr, .delete_persona {
   content: ".";
-  background: url(asset_url('delete.png')) no-repeat scroll 0px 0px transparent;
+  background: image-url('delete.png') no-repeat scroll 0px 0px transparent;
   height: 17px;
   width: 15px;
   border: medium none;
