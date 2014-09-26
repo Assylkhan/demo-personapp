@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user
+  before_action :signed_in_user, only: [:create, :destroy, :show, :update]
   def index
     redirect_to projects_path if signed_in?
   end
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       redirect_to projects_path(@user)
     else
       render 'new'
-    end   
+    end
   end
 
   def destroy
