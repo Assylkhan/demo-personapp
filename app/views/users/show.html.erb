@@ -1,1 +1,47 @@
-<h1><%= @user.first_name %> Hi!</h1>
+<div class="row well" style="margin-bottom: 100px; ">
+  <h1 class="col-md-2"><strong>Settings</strong></h1>
+  <div class="col-md-6 col-md-offset-0">
+    <h4 class="text-success"><%= flash[:success] %></h4>
+    <h4 class="text-danger"><%= flash[:errors] %></h4>
+    <h3><strong>Personal</strong></h3><br>
+    <%= simple_form_for current_user, defaults: { input_html: { class: 'form-control' } }  do |f| %>
+      <div class="row col-md-offset-0">
+        <div class="col-md-8"><%= f.input :email %>
+          <%= f.input :password %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %></div>
+      </div>
+  
+      <h3 class="row"><strong>Quadrants</strong></h3>
+      <p style="color: #a8a8a8">Leave a field blank to use the default name</p>
+      <div class="row">
+        <div style="height: 180px" class="col-md-5 well dashboard-panel-6"><div class="col-md-8 col-centered" style="margin-top: 20px; "><%= image_tag("face_1.png", style: "height:100px; weight: 100px;") %></div></div>
+        <div style="height: 180px" class="col-md-5 well dashboard-panel-6 col-md-offset-1"><%= f.input :behaviours_title, label: false %>
+          <ul class="list-unstyled line-bottom">
+             <li></li>
+             <li></li>
+             <li></li>
+           </ul>
+        </div>
+      </div>
+      <div class="row" style="height: 200px">
+        <div style="height: 180px" class="col-md-5 well dashboard-panel-6"><%= f.input :facts_demographics_title, label: false %>
+          <ul class="list-unstyled line-bottom">
+             <li></li>
+             <li></li>
+             <li></li>
+           </ul> 
+        </div>
+        <div style="height: 180px" class="col-md-5 well dashboard-panel-6 col-md-offset-1"><%= f.input :needs_goals_title, label: false %>
+          <ul class="list-unstyled line-bottom">
+             <li></li>
+             <li></li>
+             <li></li>
+           </ul> 
+        </div>
+      </div>
+      <%= f.button :submit, 'save', class: "btn btn-danger" %>
+    <% end %>
+    <h6 style="margin-top: 40px;"><strong><%= link_to "« back to home", root_path %></strong></h6>
+  </div>
+</div>  

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920205242) do
+ActiveRecord::Schema.define(version: 20140926042759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140920205242) do
     t.text     "needs_goals",        default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "share_id"
   end
 
   create_table "projects", force: true do |t|
@@ -43,6 +44,9 @@ ActiveRecord::Schema.define(version: 20140920205242) do
     t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "behaviours_title",         default: "Behaviours"
+    t.string   "facts_demographics_title", default: "Facts & Demographics"
+    t.string   "needs_goals_title",        default: "Needs & Goals"
   end
 
 end

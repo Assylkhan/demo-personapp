@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, 
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensititve: false }
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, on: :create
+  validates :password, length: { minimum: 6 }, on: :update, allow_blank: true
   has_secure_password
   has_many :projects, dependent: :destroy
 

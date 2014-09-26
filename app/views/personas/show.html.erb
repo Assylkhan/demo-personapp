@@ -1,14 +1,15 @@
 <div class="row well">
   <div class="clearfix inline">
-    <strong>Projects >> <%= @persona.project.name if @persona.project.name %> >> <%= @persona.name %></strong>
+    <strong><%= link_to "Projects", projects_path %> >> <%= link_to @persona.project.name, projects_path %> >> <%= @persona.name %></strong>
     <ul class="pull-right list-unstyled icons">
       <li><%= link_to persona_path(@persona, format: "pdf"), title: "Export to PDF" do %><span class="icon export_pdf"></span><% end %> </li>
-      <li><a title="Share" href="#"><span class="icon share"></span></a></li>
+      <li><a title="Share" onclick="send_shared_persona(<%= @persona.id %>)"><span class="icon share"></span></a></li>
       <li><a title="Print" onclick="window.print()" href="javascript:void(0);"><span class="icon print"></span></a></li>
       <li><a data-id="project_<%= @persona.project.id %>" class="addPersona" data-toggle="modal" data-target="#myModal2" title="Create another persona" href="#"><span class="icon create_persona"></span></a></li>
     </ul>
   </div>
   <%= render 'projects/personaModal' %>
+  <%= render 'to_share' %>
   <p>All changes saved automatically</p>
   <div class="row personaContainers">
     
@@ -19,7 +20,7 @@
 
     <!-- behaviours -->
     <div id="behaviours" class="col-md-6 well dashboard-panel-6 inform pull-right">
-      <h3>Behaviours</h3>
+      <h3><%= current_user.behaviours_title %></h3>
       <ul class="lead">
         <% unless @persona.behaviours == [] or @persona.behaviours == nil %>
           <% @persona.behaviours.each_with_index do |item, index| %>
@@ -39,7 +40,7 @@
   </div>
   <div class="row personaContainers">
     <div id="facts_demographics" class="col-md-6 well dashboard-panel-6 inform">
-      <h3>Facts & Demographics</h3>
+      <h3><%= current_user.facts_demographics_title %></h3>
       <ul class="lead">
         <% unless @persona.facts_demographics == [] or @persona.facts_demographics == nil %>
           <% @persona.facts_demographics.each_with_index do |item, index| %>
@@ -59,7 +60,7 @@
       </ul>
     </div>
     <div id="needs_goals" class="col-md-6 well dashboard-panel-6 inform pull-right">
-      <h3>Needs & Goals</h3>
+      <h3><%= current_user.needs_goals_title %></h3>
       <ul class="lead">
         <% unless @persona.needs_goals == [] or @persona.needs_goals == nil %>
           <% @persona.needs_goals.each_with_index do |item, index| %>

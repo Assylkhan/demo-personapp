@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :signed_in_user
   def index
     redirect_to projects_path if signed_in?
   end
@@ -31,8 +31,22 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
+  def update
+    current_user.update_attributes(user_params)
+    if current_user.errors.empty?
+      flash[:success] = "Your settings have been saved."
+      redirect_to current_user
+    else
+      flash[:errors] = "Sorry but there are some errors in the form."
+      render "show"
+    end
+
+  end
+
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:first_name, :last_name, :email, :password,
+                                   :behaviours_title,:facts_demographics_title,
+                                   :needs_goals_title)
     end
 end

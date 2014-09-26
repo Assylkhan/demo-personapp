@@ -18,7 +18,7 @@
   <% if signed_in? %>
     <ul class="nav navbar-nav pull-right">
       <li><%= link_to "home", root_path %></li>
-      <li><%= link_to "settings", "#" %></li>
+      <li><%= link_to "settings", current_user %></li>
       <li><%= link_to "persona guide", "#" %></li>
       <li><%= link_to "logout", signout_path, method: :delete %></li>
     </ul>

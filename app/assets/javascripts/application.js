@@ -81,6 +81,7 @@ $(document).on("click", ".pImages>li", function() {
 $(document).on("click", ".dashboard-panel-6.inform", function(e) {
   var hash = {};
   var self = $(this);
+  $(this).attr('disabled', true);
   var openedForm = $(".behForm").closest(".dashboard-panel-6");
   if ($(".dashboard-panel-6").find(".behForm").length > 0 && behAttrContent != "")
     $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
@@ -96,6 +97,7 @@ $(document).on("click", ".dashboard-panel-6.inform", function(e) {
     data: hash,
     dataType: "script"
   });
+  $(this).removeAttr('disabled');
 });
 function checkIfAnyBeh(element){
   if (element.find(".behAttr").length > 0) {
@@ -200,13 +202,11 @@ $(document).on("click", ".persona_post strong", function(e){
 });
 $(".persona_name>form>#persona_name").keypress(function(e) {
   if (e.which == 13) {
-    // e.stopPropagation();
     $(".persona_name>form").submit();
   };
 });
 $(".persona_post>form>#persona_post").keypress(function(e) {
   if (e.which == 13) {
-    // e.stopPropagation();
     $(".persona_post>form").submit();
   };
 });
@@ -215,6 +215,15 @@ $(document).on("mouseenter", ".persona_image", function(e){
 }).on("mouseleave", ".persona_image", function(e){
   $(this).find(".delete_persona").addClass("hidden");
 });
-// function link_to(persona_id){
-//   window.location.href = "/personas/"+persona_id
-// };
+function send_shared_persona(persona_id){
+  if (confirm("This will make this persona publicly viewable to anyone with this link, are you sure you want to proceed?")) {
+    var persona = {};
+    persona["id"] = persona_id;
+    $.ajax({
+      type: 'POST',
+      url: '/share',
+      data: persona,
+      dataType: "script"
+    });
+  };
+};

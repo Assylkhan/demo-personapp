@@ -34,23 +34,26 @@ class PersonasController < ApplicationController
     @persona = Persona.find_by(id: params[:id])
     @div_id = params[:div_id]
     @index = params[:index]
-    if params[:update] == "true"
-      @persona[@div_id][@index.to_i] = params[:attrib] unless params[:attrib].blank?
-      @update = true
+    unless params[:attrib].blank?
+      if params[:update] == "true"
+        @persona[@div_id][@index.to_i] = params[:attrib]
+        @update = true
+      else
+        @persona[@div_id] << params[:attrib]
+        @update = false
+      end
+      case @div_id
+      when "behaviours"
+        @persona.behaviours_will_change!
+      when "facts_demographics"
+        @persona.facts_demographics_will_change!
+      when "needs_goals"
+        @persona.needs_goals_will_change!
+      end
+      @persona.save
     else
-      @persona[@div_id] << params[:attrib] unless params[:attrib].blank?
-      @update = false
+      @update = "error"
     end
-    case @div_id
-    when "behaviours"
-      @persona.behaviours_will_change!
-    when "facts_demographics"
-      @persona.facts_demographics_will_change!
-    when "needs_goals"
-      @persona.needs_goals_will_change!
-    end
-    @persona.save
-    puts @persona[@div_id][@index.to_i]
     respond_to do |format|
       format.js
     end
@@ -133,6 +136,16 @@ class PersonasController < ApplicationController
   def download_pdf
     output = CustomersReport.new.to_pdf
     send_data output, :type => 'application/pdf', :filename => "customers.pdf"
+  end
+
+  def to_share
+    puts params
+    @persona = Persona.find_by(id: params[:id])
+    @persona.share_id = rand(36**14).to_s(36)
+    @persona.save
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
