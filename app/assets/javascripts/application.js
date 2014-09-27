@@ -78,15 +78,9 @@ $(document).on("click", ".pImages>li", function() {
     dataType: "script"
   });
 });
-$(".dashboard-panel-6.inform").clickTime = null;
 $(document).on("click", ".dashboard-panel-6.inform", function(e) {
-  event.stopPropagation();
-  event.preventDefault();
-  var currentTime = new Date();
-    if (currentTime - $(".dashboard-panel-6.inform").clickTime < 1000) {
-        return;
-    };
-    unitOptionReadyButton.clickTime = currentTime;
+  e.stopPropagation();
+  e.preventDefault();
   var hash = {};
   var self = $(this);
   var openedForm = $(".behForm").closest(".dashboard-panel-6");
