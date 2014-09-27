@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  caches_page :new
+  # caches_page :new
   def new
     @skip_nav = true
   end
