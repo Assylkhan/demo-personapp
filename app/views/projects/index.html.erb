@@ -11,8 +11,8 @@
     
   </div>
   <ul class="list-unstyled projects">
-  <% if (current_user.projects.exists?) %>
-    <% current_user.projects.each do |project| %>
+  <% if (@projects.exists?) %>
+    <% @projects.each do |project| %>
       <%= render project %>
     <% end %>
   <% end %>

@@ -75,7 +75,7 @@ h2, h4 {
 .navbar, .nav>li>a:hover {
   background: black;
 }
-.footer>div>ul.nav>li>a:hover {
+.footer>div>ul.nav>li>a:hover, .footer>div>ul.nav>li>a:active {
   background: #FFF;
 }
 .nav>li {
