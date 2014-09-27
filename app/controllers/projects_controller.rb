@@ -13,10 +13,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def new
-    @project = current_user.projects.build
-  end
-
   def destroy
     @project = current_user.projects.find_by(id: params[:id])
     @project = @project.destroy!
