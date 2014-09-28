@@ -94,10 +94,13 @@ $(document).on("click", ".pImages>li", function() {
 //   me.(btn.id, btn, event, options);
 // }
 $(document).on("dblclick", ".dashboard-panel-6.inform", function(e) {
+  e.preventDefault();
+  e.stopPropagation();
   return false;
 });
 $(document).on("click", ".dashboard-panel-6.inform", function(e) {
   e.stopPropagation();
+  e.preventDefault();
   var hash = {};
   var self = $(this);
   var openedForm = $(".behForm").closest(".dashboard-panel-6");
