@@ -93,27 +93,30 @@ $(document).on("click", ".pImages>li", function() {
 
 //   me.(btn.id, btn, event, options);
 // }
-$(document).ready(function(){
-  $(document).on("click", ".dashboard-panel-6.inform", function(e) {
-    e.stopPropagation();
-    var hash = {};
-    var self = $(this);
-    var openedForm = $(".behForm").closest(".dashboard-panel-6");
-    if ($(".dashboard-panel-6").find(".behForm").length > 0 && behAttrContent != "")
-      $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
-    else
-      $(".behForm").remove();
-    checkIfAnyBeh(openedForm);
-    hash["id"] = $(".pImages").attr("id").replace("persona_", "");
-    hash["lastIndex"] = self.find("ul>li.behAttr:last-child").index()+1;
-    hash["div_id"] = self.attr("id");
-      $.ajax({
-      type: 'POST',
-      url: '/behaviours',
-      data: hash,
-      dataType: "script"
-    });
+var stopClick = false;
+$(document).on("click", ".dashboard-panel-6.inform", function(e) {
+  e.stopPropagation();
+  if (stopClick)
+    return;
+  stopClick = true;
+  var hash = {};
+  var self = $(this);
+  var openedForm = $(".behForm").closest(".dashboard-panel-6");
+  if ($(".dashboard-panel-6").find(".behForm").length > 0 && behAttrContent != "")
+    $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
+  else
+    $(".behForm").remove();
+  checkIfAnyBeh(openedForm);
+  hash["id"] = $(".pImages").attr("id").replace("persona_", "");
+  hash["lastIndex"] = self.find("ul>li.behAttr:last-child").index()+1;
+  hash["div_id"] = self.attr("id");
+    $.ajax({
+    type: 'POST',
+    url: '/behaviours',
+    data: hash,
+    dataType: "script"
   });
+  stopClick = false;
 });
 function checkIfAnyBeh(element){
   if (element.find(".behAttr").length > 0) {
@@ -128,7 +131,9 @@ $(document).on("click", ".cancel", function(e) {
   if (behAttrContent == "")
     $(".behForm").remove();
   else
-    $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>')
+    $(".behForm").replaceWith('<li id='+$(".behForm").attr("id")+' class="behAttr">'+behAttrContent+'</li>')
+  // $(this).find(".deleteAttr").addClass("hidden");
+  console.log(behAttrContent);
   checkIfAnyBeh(behaviours_div);
 });
 $(document).on("click", ".behForm", function(e) { 
@@ -144,7 +149,7 @@ function behFormOpened(){
 };
 $(document).on("click", ".behAttr", function(e) {
   e.stopPropagation();
-  // $(this).find(".deleteAttr").addClass("hidden");
+  $(this).find(".deleteAttr").addClass("hidden");
   var hash = {};
   var box = $(this).closest(".dashboard-panel-6");
   behFormOpened();

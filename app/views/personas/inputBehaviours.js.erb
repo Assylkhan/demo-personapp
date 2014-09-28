@@ -9,3 +9,4 @@ if ( <%= @update %> == true ){
   var behAttrContent = ""
   div_box.find("ul").append("<%= escape_javascript(render partial: 'inputBehaviour', locals: {persona: @persona, index: @lastIndex, div_id: @div_id, update: @update}) %>");
 }
+stopClick = false;
