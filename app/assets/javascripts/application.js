@@ -78,46 +78,10 @@ $(document).on("click", ".pImages>li", function() {
     dataType: "script"
   });
 });
-// onButtonTap = function(btn, event, options) {
-//   var me = this,
-//       now = Date.now();
-
-
-//   // Keep the user from multiple clicks
-//   if (now < me.lastTapTimestamp + 300) {
-//       me.lastTapTimestamp = now;
-//       return;
-//   }
-//   me.lastTapTimestamp = now;
-
-
-//   me.(btn.id, btn, event, options);
-// }
 $(document).on("dblclick", ".dashboard-panel-6.inform", function(e) {
   e.preventDefault();
   e.stopPropagation();
   return false;
-});
-$(document).on("click", ".dashboard-panel-6.inform", function(e) {
-  e.stopPropagation();
-  e.preventDefault();
-  var hash = {};
-  var self = $(this);
-  var openedForm = $(".behForm").closest(".dashboard-panel-6");
-  if ($(".dashboard-panel-6").find(".behForm").length > 0 && behAttrContent != "")
-    $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
-  else
-    $(".behForm").remove();
-  checkIfAnyBeh(openedForm);
-  hash["id"] = $(".pImages").attr("id").replace("persona_", "");
-  hash["lastIndex"] = self.find("ul>li.behAttr:last-child").index()+1;
-  hash["div_id"] = self.attr("id");
-    $.ajax({
-    type: 'POST',
-    url: '/behaviours',
-    data: hash,
-    dataType: "script"
-  });
 });
 function checkIfAnyBeh(element){
   if (element.find(".behAttr").length > 0) {
@@ -126,17 +90,6 @@ function checkIfAnyBeh(element){
   else
     element.find(".placeholderText").show();
 };
-$(document).on("click", ".cancel", function(e) {
-  e.stopPropagation();
-  var behaviours_div = $(this).closest(".dashboard-panel-6");
-  if (behAttrContent == "")
-    $(".behForm").remove();
-  else
-    $(".behForm").replaceWith('<li id='+$(".behForm").attr("id")+' class="behAttr">'+behAttrContent+'</li>')
-  // $(this).find(".deleteAttr").addClass("hidden");
-  console.log(behAttrContent);
-  checkIfAnyBeh(behaviours_div);
-});
 $(document).on("click", ".behForm", function(e) { 
   e.stopPropagation();
 });
@@ -148,22 +101,6 @@ function behFormOpened(){
       $(".behForm").remove();
   };
 };
-$(document).on("click", ".behAttr", function(e) {
-  e.stopPropagation();
-  $(this).find(".deleteAttr").addClass("hidden");
-  var hash = {};
-  var box = $(this).closest(".dashboard-panel-6");
-  behFormOpened();
-  hash["id"] = $(".pImages").attr("id").replace("persona_", "");
-  hash["index"] = $(this).attr("id");
-  hash["div_id"] = box.attr("id");
-  $.ajax({
-    type: 'POST',
-    url: '/behaviours',
-    data: hash,
-    dataType: "script"
-  });
-});
 $(document).on("mouseenter", "li.behAttr", function(e) {
   $(this).find(".deleteAttr").removeClass("hidden");
 }).on("mouseleave", "li.behAttr", function(e) {

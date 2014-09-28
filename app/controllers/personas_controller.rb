@@ -93,22 +93,6 @@ class PersonasController < ApplicationController
     end
   end
 
-  def inputBehaviours
-    @persona = Persona.find_by(id: params[:id])
-    if params[:index]
-      @index = params[:index]
-      @update = true
-    else
-      @index = ''
-      @update = false
-    end
-    @div_id = params[:div_id]
-    @lastIndex = params[:lastIndex]
-    respond_to do |format|
-      format.js
-    end
-  end
-
   def input_name
     @attrib = params[:persona_post] ? "persona_post" : "persona_name"
     @persona = Persona.find_by(id: params[:id])

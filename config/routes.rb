@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get "/share/:id" => "personas#sharedPersona", as: :sharedPersona
   put "/update_name/:id" => "personas#update_name", as: :update_name
   post "/input_name" => "personas#input_name", as: :input_name
-  post "/behaviours" => "personas#inputBehaviours"
   put "/behaviours/:id" => "personas#updateBehaviours", as: :update_behaviours
   delete "/behaviours/:id" => "personas#destroyBehaviour", as: :destroy_behaviour
 

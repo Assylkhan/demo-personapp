@@ -192,6 +192,7 @@ li.panel {
 }
 li.behForm {
   position: relative;
+  margin: 10px 0px;
   /*display: block;*/
   .form-control {
     margin-bottom: 10px;
@@ -202,9 +203,6 @@ li.behForm {
 }
 li.behAttr:hover {
   background: #FFF;
-}
-.behForm {
-  margin: 10px 0px;
 }
 .clearfix.behForm:before,
 .clearfix.behForm:after {

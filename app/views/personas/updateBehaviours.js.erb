@@ -3,7 +3,7 @@ if ("<%= @update %>" == "true") {
   $(".behForm").replaceWith('<li class="behAttr" id="<%=@index %>"><%= @persona[@div_id][@index.to_i] %><a href="javascript:void(0)" class="hidden deleteAttr pull-right"></a></li>');
 } else if ("<%= @update %>" == "false") {
   $(".behForm").replaceWith('<li class="behAttr" id="<%=@index %>"><%= @persona[@div_id].last %><a href="javascript:void(0)" class="hidden deleteAttr pull-right"></a></li>');
-  behaviours_div.find("ul").append("<%= escape_javascript(render partial: 'inputBehaviour', locals: {persona: @persona, index: @index.to_i+1, update: 'false', div_id: @div_id } ) %>");
+  behaviours_div.find("ul").append(large(<%=@index.to_i+1%>, <%=@persona.id%>, "<%=@div_id%>", false));
   var behAttrContent = "";
 } else {
   console.log("empty");

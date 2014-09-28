@@ -1,0 +1,55 @@
+var behAttrContent;
+var large = function(index, id, div_id, update){
+  return '<li class="behForm clearfix" id='+index+'>'+
+    '<form action="/behaviours/'+id+'" method="put" data-remote="true">'+
+    '<input id="attrib" name="attrib" type="text" class="form-control pull-right" autocomplete="off"></input>'+
+    '<input id="index" name="index" type="hidden" value='+index+' />'+
+    '<input id="update" name="update" type="hidden" value="'+update+'" />'+
+    '<input id="div_id" name="div_id" type="hidden" value='+div_id+' />'+'<br>'+
+    '<input name="commit" type="submit" value="save" class="create pull-left btn btn-danger" />'+
+    '<button name="button" type="button" class="pull-left btn btn-danger cancel">Cancel</button>'+
+    '</form>'+
+    '</li>';
+};
+$(document).on("click", ".dashboard-panel-6.inform", function(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  var self = $(this);
+  var openedForm = $(".behForm").closest(".dashboard-panel-6");
+  if ($(".dashboard-panel-6").find(".behForm").length > 0 && behAttrContent != "")
+    $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
+  else
+    $(".behForm").remove();
+  checkIfAnyBeh(openedForm);
+  var id = $(".pImages").attr("id").replace("persona_", "");
+  var lastIndex = self.find("ul>li.behAttr:last-child").index()+1;
+  var quadrant_id = self.attr("id");
+  var quadrant = $("#"+quadrant_id);
+  quadrant.find("ul").append(large(lastIndex, id, quadrant_id, false)); //large(index,persona_id,quadrant_id,update=false/true)
+  quadrant.find("ul>li.placeholderText").hide();
+  behAttrContent = "";
+});
+$(document).on("click", ".behAttr", function(e) {
+
+  e.stopPropagation();
+  $(this).find(".deleteAttr").addClass("hidden");
+  var hash = {};
+  var box = $(this).closest(".dashboard-panel-6");
+  behFormOpened();
+  var id = $(".pImages").attr("id").replace("persona_", "");
+  var index = $(this).attr("id");
+  var quadrant_id = box.attr("id");
+  var quadrant = $("#"+quadrant_id);
+  behAttrContent = quadrant.find("ul>li#"+index).html();
+  quadrant.find("ul>li#"+index).replaceWith(large(index, id, quadrant_id, true));
+});
+$(document).on("click", ".cancel", function(e) {
+  e.stopPropagation();
+  var behaviours_div = $(this).closest(".dashboard-panel-6");
+  if (behAttrContent == "")
+    $(".behForm").remove();
+  else
+    $(".behForm").replaceWith('<li id='+$(".behForm").attr("id")+' class="behAttr">'+behAttrContent+'</li>')
+  // $(this).find(".deleteAttr").addClass("hidden");
+  checkIfAnyBeh(behaviours_div);
+});
