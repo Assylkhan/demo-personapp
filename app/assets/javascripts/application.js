@@ -78,17 +78,18 @@ $(document).on("click", ".pImages>li", function() {
     dataType: "script"
   });
 });
-$(document).on("dblclick", ".dashboard-panel-6.inform", function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  return false;
-});
+// $(document).on("dblclick", ".dashboard-panel-6.inform", function(e) {
+//   e.preventDefault();
+//   e.stopPropagation();
+//   return false;
+// });
 function checkIfAnyBeh(element){
   if (element.find(".behAttr").length > 0) {
     element.find(".placeholderText").hide();
   }
-  else
+  else {
     element.find(".placeholderText").show();
+  };
 };
 $(document).on("click", ".behForm", function(e) { 
   e.stopPropagation();

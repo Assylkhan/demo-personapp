@@ -1,6 +1,6 @@
-var box = $("#<%= @div_id %>");
-box.find(".behAttr#<%= @attrib_index %>").remove();
-checkIfAnyBeh(box);
-box.find(".behAttr").map(function(i, obj){
+var quadrant = $("#<%= @div_id %>");
+quadrant.find(".behAttr#<%= @attrib_index %>").remove();
+checkIfAnyBeh(quadrant);
+quadrant.find(".behAttr").map(function(i, obj){
   obj.id = i;
 });
