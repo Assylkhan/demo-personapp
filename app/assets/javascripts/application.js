@@ -93,12 +93,11 @@ $(document).on("click", ".pImages>li", function() {
 
 //   me.(btn.id, btn, event, options);
 // }
-var stopClick = false;
+$(document).on("dblclick", ".dashboard-panel-6.inform", function(e) {
+  return false;
+});
 $(document).on("click", ".dashboard-panel-6.inform", function(e) {
   e.stopPropagation();
-  if (stopClick)
-    return;
-  stopClick = true;
   var hash = {};
   var self = $(this);
   var openedForm = $(".behForm").closest(".dashboard-panel-6");
@@ -116,7 +115,6 @@ $(document).on("click", ".dashboard-panel-6.inform", function(e) {
     data: hash,
     dataType: "script"
   });
-  stopClick = false;
 });
 function checkIfAnyBeh(element){
   if (element.find(".behAttr").length > 0) {
