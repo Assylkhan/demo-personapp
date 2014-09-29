@@ -31,10 +31,8 @@ gem 'bootstrap-sass'
 gem "tweet-button"
 gem 'simple_form'
 gem 'bcrypt-ruby'
-gem 'prawn'
-gem 'prawn-table'
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

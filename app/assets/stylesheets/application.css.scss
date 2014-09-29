@@ -30,6 +30,9 @@ $brp-primary: #428bca;
 .modal-content {
   @include box_sizing;
 }
+.wrapme {
+  word-wrap: break-word;
+}
 .personaContainers {
   display: -webkit-box;
   display: -webkit-flex;

@@ -13,10 +13,14 @@ class PersonasController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = PersonaPdf.new(@persona)
-        send_data pdf.render, filename: "persona_#{@persona.id}.pdf",
-                              type: "application/pdf",
-                              disposition: "inline"
+        render :pdf => "my_pdf",
+        :disposition => "inline",
+        :template => "personas/show.pdf.erb",
+        :layout => "layouts/pdf.html.erb"
+        # pdf = PersonaPdf.new(@persona)
+        # send_data pdf.render, filename: "persona_#{@persona.id}.pdf",
+        #                       type: "application/pdf",
+        #                       disposition: "inline"
       end
     end
   end

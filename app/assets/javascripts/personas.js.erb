@@ -50,6 +50,6 @@ $(document).on("click", ".cancel", function(e) {
     $(".behForm").remove();
   else
     $(".behForm").replaceWith('<li id='+$(".behForm").attr("id")+' class="behAttr">'+behAttrContent+'</li>')
-  // $(this).find(".deleteAttr").addClass("hidden");
+  $(this).find(".deleteAttr").addClass("hidden");
   checkIfAnyBeh(behaviours_div);
 });
