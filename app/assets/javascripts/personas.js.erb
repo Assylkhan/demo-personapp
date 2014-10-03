@@ -11,9 +11,8 @@ var large = function(index, id, div_id, update){
     '</form>'+
     '</li>';
 };
-$(document).on("click", ".dashboard-panel-6.inform", function(e) {
+$(document).on("click", ".inform", function(e) {
   e.stopPropagation();
-  e.preventDefault();
   var self = $(this);
   var openedForm = $(".behForm").closest(".dashboard-panel-6");
   if ($(".dashboard-panel-6").find(".behForm").length > 0 && behAttrContent != "")
@@ -30,15 +29,12 @@ $(document).on("click", ".dashboard-panel-6.inform", function(e) {
   behAttrContent = "";
 });
 $(document).on("click", ".behAttr", function(e) {
-
   e.stopPropagation();
   $(this).find(".deleteAttr").addClass("hidden");
-  var hash = {};
-  var box = $(this).closest(".dashboard-panel-6");
   behFormOpened();
   var id = $(".pImages").attr("id").replace("persona_", "");
   var index = $(this).attr("id");
-  var quadrant_id = box.attr("id");
+  var quadrant_id = $(this).closest(".dashboard-panel-6").attr("id");
   var quadrant = $("#"+quadrant_id);
   behAttrContent = quadrant.find("ul>li#"+index).html();
   quadrant.find("ul>li#"+index).replaceWith(large(index, id, quadrant_id, true));

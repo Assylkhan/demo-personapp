@@ -126,16 +126,6 @@ class PersonasController < ApplicationController
     send_data output, :type => 'application/pdf', :filename => "customers.pdf"
   end
 
-  def to_share
-    puts params
-    @persona = Persona.find_by(id: params[:id])
-    @persona.share_id = rand(36**14).to_s(36)
-    @persona.save
-    respond_to do |format|
-      format.js
-    end
-  end
-
   private
     def persona_fields
       params.require(:persona).permit(:name, :image, :post)

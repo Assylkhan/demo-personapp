@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :personas, only: [:create, :new, :destroy, :show, :update]
-  post "/share" => "personas#to_share", as: :to_share
-  get "/share/:id" => "personas#sharedPersona", as: :sharedPersona
+  
   put "/update_name/:id" => "personas#update_name", as: :update_name
   post "/input_name" => "personas#input_name", as: :input_name
   put "/behaviours/:id" => "personas#updateBehaviours", as: :update_behaviours

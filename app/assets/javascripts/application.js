@@ -16,7 +16,6 @@ $(document).on("click", ".btn-danger.next", function(e){
       dataType: "script"
     });
     return false;
-
 });
 $(document).on("click", ".btn-danger.save", function(e){
   if ($("#persona_name").val() == "") {
@@ -46,7 +45,7 @@ $(document).on("click", "li>.panel-heading", function() {
   $(this).parent().addClass("panel-primary");
   $(this).parent().find(".panel-body").slideDown(300).removeClass("hide");
 });
-$(document).on("click", "li.panel.panel-primary>.panel-heading", function() {
+$(document).on("click", ".panel-primary>.panel-heading", function() {
   $(this).parent().find(".panel-body").slideUp(300);
   $(this).parent().removeClass("panel-primary");
 });
@@ -67,12 +66,10 @@ $(document).on("click", ".pImages>li", function() {
   });
 });
 function checkIfAnyBeh(element){
-  if (element.find(".behAttr").length > 0) {
+  if (element.find(".behAttr").length > 0)
     element.find(".placeholderText").hide();
-  }
-  else {
+  else
     element.find(".placeholderText").show();
-  };
 };
 $(document).on("click", ".behForm", function(e) { 
   e.stopPropagation();
@@ -120,7 +117,6 @@ $(document).on("click", ".delete_persona", function(e){
 });
 $(document).on("click", ".persona_name strong", function(e){ 
   e.stopPropagation();
-  // if $(this).closest(".dashboard-panel-6").find("form").length > 0
   var hash = {};
   hash["id"] = $(".pImages").attr("id").replace("persona_", "");
   hash["persona_name"] = $(".persona_name>strong").html();
@@ -144,29 +140,15 @@ $(document).on("click", ".persona_post strong", function(e){
   });
 });
 $(".persona_name>form>#persona_name").keypress(function(e) {
-  if (e.which == 13) {
+  if (e.which == 13)
     $(".persona_name>form").submit();
-  };
 });
 $(".persona_post>form>#persona_post").keypress(function(e) {
-  if (e.which == 13) {
+  if (e.which == 13)
     $(".persona_post>form").submit();
-  };
 });
 $(document).on("mouseenter", ".persona_image", function(e){
   $(this).find(".delete_persona").removeClass("hidden");
 }).on("mouseleave", ".persona_image", function(e){
   $(this).find(".delete_persona").addClass("hidden");
 });
-function send_shared_persona(persona_id){
-  if (confirm("This will make this persona publicly viewable to anyone with this link, are you sure you want to proceed?")) {
-    var persona = {};
-    persona["id"] = persona_id;
-    $.ajax({
-      type: 'POST',
-      url: '/share',
-      data: persona,
-      dataType: "script"
-    });
-  };
-};
