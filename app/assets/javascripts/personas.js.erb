@@ -13,7 +13,6 @@ var large = function(index, id, div_id, update){
 };
 $(document).on("click", ".inform", function(e) {
   e.stopPropagation();
-  var self = $(this);
   var openedForm = $(".behForm").closest(".dashboard-panel-6");
   if ($(".dashboard-panel-6").find(".behForm").length > 0 && behAttrContent != "")
     $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
@@ -21,8 +20,8 @@ $(document).on("click", ".inform", function(e) {
     $(".behForm").remove();
   checkIfAnyBeh(openedForm);
   var id = $(".pImages").attr("id").replace("persona_", "");
-  var lastIndex = self.find("ul>li.behAttr:last-child").index()+1;
-  var quadrant_id = self.attr("id");
+  var lastIndex = $(this).find("ul>li.behAttr:last-child").index()+1;
+  var quadrant_id = $(this).attr("id");
   var quadrant = $("#"+quadrant_id);
   quadrant.find("ul").append(large(lastIndex, id, quadrant_id, false)); //large(index,persona_id,quadrant_id,update=false/true)
   quadrant.find("ul>li.placeholderText").hide();

@@ -17,16 +17,11 @@ class PersonasController < ApplicationController
         :disposition => "inline",
         :template => "personas/show.pdf.erb",
         :layout => "layouts/pdf.html.erb"
-        # pdf = PersonaPdf.new(@persona)
-        # send_data pdf.render, filename: "persona_#{@persona.id}.pdf",
-        #                       type: "application/pdf",
-        #                       disposition: "inline"
       end
     end
   end
 
   def update
-    # params[:persona][:image] = "" if params[:persona][:image].blank?
     @persona = Persona.find_by(id: params[:id])
     @persona.update_attributes(persona_fields)
     respond_to do |format|
@@ -100,8 +95,6 @@ class PersonasController < ApplicationController
   def input_name
     @attrib = params[:persona_post] ? "persona_post" : "persona_name"
     @persona = Persona.find_by(id: params[:id])
-    # @persona = Persona.find_by(id: params[:id])
-
     respond_to do |format|
       format.js
     end

@@ -29,9 +29,7 @@
             </li>
           <% end %>
         <% else %>
-          <li class="placeholderText">Has a housecleaner</li>
-          <li class="placeholderText">Buys take-away 3 times a week</li>
-          <li class="placeholderText">Frequently feels overhelmed when she forgets something</li>
+          <%= render partial: "placeholders", locals: {attrs: "behaviours"} %>
         <% end %>
       </ul>
     </div>
@@ -48,11 +46,7 @@
             </li>
           <% end %>
         <% else %>
-          <li class="placeholderText">Working mum</li>
-          <li class="placeholderText">34 years old</li>
-          <li class="placeholderText">Lives in Reading, works in London</li>
-          <li class="placeholderText">Married, 2 kids</li>
-          <li class="placeholderText">Household 125k a year</li>
+          <%= render partial: "placeholders", locals: {attrs: "facts_demographics"} %>
         <% end %>
       </ul>
     </div>
@@ -67,10 +61,7 @@
             </li>
           <% end %>
         <% else %>
-          <li class="placeholderText">Spend more time with her friends</li>
-          <li class="placeholderText">Feel like she “has it sorted”</li>
-          <li class="placeholderText">Live a healthier lifestyle</li>
-          <li class="placeholderText">“Clone herself”</li>
+          <%= render partial: "placeholders", locals: {attrs: "needs_goals"} %>
         <% end %>
       </ul>
     </div>

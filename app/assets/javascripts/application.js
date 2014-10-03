@@ -4,7 +4,27 @@
 //= require bootstrap
 //= require jquery.serializejson.min
 //= require_tree .
-$(document).on("click", ".btn-danger.next", function(e){
+
+function checkIfAnyBeh(el){
+  if (el.find(".behAttr").length > 0)
+    el.find(".placeholderText").addClass("hide");
+  else
+    el.find(".placeholderText").removeClass("hide");
+};
+function behFormOpened(){
+  if ($(".behForm").length > 0){
+    if (behAttrContent != "")
+      $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
+    else
+      $(".behForm").remove();
+  };
+};
+function images() {
+  for (var i = 1; i<11; i++){
+    $('.pImages').append("<li id='face_" + i + "'><a href='javascript:void(0)'><img alt='face_" + i + "' src='/assets/face_" + i + ".png' /></a></li>");
+  }
+};
+$(document).on("click", ".next", function(e){
   if ($("#project_name").val() == "")
     alert('please provide a project name');
   else
@@ -17,7 +37,7 @@ $(document).on("click", ".btn-danger.next", function(e){
     });
     return false;
 });
-$(document).on("click", ".btn-danger.save", function(e){
+$(document).on("click", ".save", function(e){
   if ($("#persona_name").val() == "") {
     alert('please provide a persona name');
     return false;
@@ -37,27 +57,27 @@ $(document).on("click", ".btn-danger.save", function(e){
 
 $(document).on("click", ".addPersona", function(e){
   e.preventDefault();
-  var _self = $(this);
-  var project_id = _self.data('id').replace("project_", "");
+  var project_id = $(this).data('id').replace("project_", "");
   $(".btn-danger.save").attr("id", project_id);
 });
-$(document).on("click", "li>.panel-heading", function() { 
-  $(this).parent().addClass("panel-primary");
-  $(this).parent().find(".panel-body").slideDown(300).removeClass("hide");
+$(document).on("click", ".panel-heading", function() { 
+  $(this).parent().addClass("panel-primary")
+  .find(".panel-body").slideDown(300).removeClass("hide");
 });
 $(document).on("click", ".panel-primary>.panel-heading", function() {
-  $(this).parent().find(".panel-body").slideUp(300);
-  $(this).parent().removeClass("panel-primary");
+  $(this).parent().removeClass("panel-primary")
+  .find(".panel-body").slideUp(300);
 });
 $(document).on("click", ".pImages>li", function() {
   var hash = {};
-  hash["id"] = $(this).parent().attr("id").replace("persona_", "");
+  var self = $(this);
+  hash["id"] = self.parent().attr("id").replace("persona_", "");
   hash["persona"] = {};
 
   if ($(".pImages>li:visible").length == 1)
     hash["persona"]["image"] = '';
   else
-    hash["persona"]["image"] = $(this).attr("id") + ".png"; 
+    hash["persona"]["image"] = self.attr("id") + ".png"; 
   $.ajax({
     type: 'PUT',
     url: '/personas/'+hash["id"],
@@ -65,23 +85,9 @@ $(document).on("click", ".pImages>li", function() {
     dataType: "script"
   });
 });
-function checkIfAnyBeh(element){
-  if (element.find(".behAttr").length > 0)
-    element.find(".placeholderText").hide();
-  else
-    element.find(".placeholderText").show();
-};
-$(document).on("click", ".behForm", function(e) { 
+$(document).on("click", "li.behForm", function(e) { 
   e.stopPropagation();
 });
-function behFormOpened(){
-  if ($(".behForm").length > 0){
-    if (behAttrContent != "")
-      $(".behForm").replaceWith('<li id='+$(".behForm").index()+' class="behAttr">'+behAttrContent+'</li>');
-    else
-      $(".behForm").remove();
-  };
-};
 $(document).on("mouseenter", "li.behAttr", function(e) {
   $(this).find(".deleteAttr").removeClass("hidden");
 }).on("mouseleave", "li.behAttr", function(e) {

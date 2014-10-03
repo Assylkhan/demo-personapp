@@ -2,17 +2,16 @@
 <div class="personaContainers">
   <div class="" style="width: 320px;border: 1px solid; margin-right: 50px;">
     <div style="margin: 0 20px;"><h5><%= @persona.name %> - <%= @persona.post %></h5>
-      <%= wicked_pdf_image_tag(@persona.image, size: "150x150", style: "margin-left: 30px;") unless @persona.image.nil? or @persona.image == "" %></div>
+      <%= wicked_pdf_image_tag(@persona.image, size: "150x150", style: "margin-left: 30px;") unless @persona.image.nil? or @persona.image == "" %>
+    </div>
   </div>
   <div class="" style="width: 320px;border: 1px solid;">
     <div style="margin: 0 20px;">
       <h5><%= current_user.behaviours_title %></h5>
       <ul class="wrapme">
-        <% unless @persona.behaviours == [] or @persona.behaviours == nil %>
-          <% @persona.behaviours.each_with_index do |item, index| %>
-            <li><%= item %></li>
-          <% end %>
-        <% end %>
+        <% @persona.behaviours.each_with_index do |item, index| %>
+          <li><%= item %></li>
+        <% end unless @persona.behaviours == [] or @persona.behaviours == nil %>
       </ul>
     </div>
   </div>
@@ -22,11 +21,9 @@
     <div style="margin-left:20px;">
       <h5><%= current_user.facts_demographics_title %></h5>
       <ul class="wrapme">
-        <% unless @persona.behaviours == [] or @persona.behaviours == nil %>
-          <% @persona.behaviours.each_with_index do |item, index| %>
-            <li><%= item %></li>
-          <% end %>
-        <% end %>
+        <% @persona.behaviours.each_with_index do |item, index| %>
+          <li><%= item %></li>
+        <% end unless @persona.behaviours == [] or @persona.behaviours == nil %>
       </ul>
     </div>
   </div>
@@ -34,11 +31,9 @@
     <div style="margin-left:20px;">
       <h5><%= current_user.needs_goals_title %></h5>
       <ul class="wrapme">
-        <% unless @persona.behaviours == [] or @persona.behaviours == nil %>
-          <% @persona.behaviours.each_with_index do |item, index| %>
-            <li><%= item %></li>
-          <% end %>
-        <% end %>
+        <% @persona.behaviours.each_with_index do |item, index| %>
+          <li><%= item %></li>
+        <% end unless @persona.behaviours == [] or @persona.behaviours == nil %>
       </ul>
     </div>
   </div>

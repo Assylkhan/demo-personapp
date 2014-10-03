@@ -40,7 +40,6 @@ class UsersController < ApplicationController
       flash[:errors] = "Sorry but there are some errors in the form."
       render "show"
     end
-
   end
 
   private

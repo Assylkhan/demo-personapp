@@ -12,44 +12,12 @@
   <![endif]-->
 </head>
 <body class="bg-grayLight">
-
-<header class="header angleBorders navbar">
-  <a href="<%= root_path %>"><img src="<%=asset_url('logo.png') %>" alt="Personapp logo"></a>
-  <% if signed_in? %>
-    <ul class="nav navbar-nav pull-right">
-      <li><%= link_to "home", root_path %></li>
-      <li><%= link_to "settings", current_user %></li>
-      <li><%= link_to "persona guide", "#" %></li>
-      <li><%= link_to "logout", signout_path, method: :delete %></li>
-    </ul>
-  <% else %>
-    <ul class="nav navbar-nav pull-right">
-      <% unless @skip_nav %>
-        <li><%= link_to "about", "#" %></li>
-        <li><%= link_to "sign in", signin_path %></li>
-      <% end %>
-    </ul>
-  <% end %>
-</header>
-<div class="wrapper container">
-  <div class="row">
-    <%= yield %>
-  </div>
-</div>
-<footer class="footer navbar-default navbar-fixed-bottom">
-  <div class="container-fluid row clearfix inline">
-    <ul class="nav pull-left inline footer-nav">
-      <li><%= link_to "about", "#" %></li>
-      <li><%= link_to "feedback", "#" %></li>
-      <li class="social_button"><%= tweet_button(:count => "horizontal") %></li>
-      <li class="social_button"><div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=762522803806953&amp;xfbml=1"></script><fb:like href="PAGEURL" send="false" layout="button_count" width="50" show_faces="false" font=""></fb:like></li>
-    </ul>
-    <!-- <a class=""><img src="" alt=""></a> -->
-    <div class="nav pull-right">
-      <a class="pull-left" style="margin: 10px 20px" href="#">© Diego</a>
-      <a class="pull-left"><img src="<%= asset_url('personImage.png') %>" alt="fourMen"></a>
+  <%= render partial: "layouts/header", locals: { skip_nav: @skip_nav } %>
+  <div class="wrapper container">
+    <div class="row">
+      <%= yield %>
     </div>
   </div>
-</footer>
+  <%= render 'layouts/footer' %>
 </body>
 </html>
